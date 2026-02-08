@@ -1,0 +1,988 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tasya Dyachkova | Design-lead</title>
+    <style>
+        @font-face {
+            font-family: 'SB Sans Display';
+            src: url('https://cdn.jsdelivr.net/gh/nicolo-ribaudo/free-sber-fonts@main/SBSansDisplay-Regular.woff2') format('woff2');
+            font-weight: 400;
+            font-style: normal;
+            font-display: swap;
+        }
+        @font-face {
+            font-family: 'SB Sans Display';
+            src: url('https://cdn.jsdelivr.net/gh/nicolo-ribaudo/free-sber-fonts@main/SBSansDisplay-Light.woff2') format('woff2');
+            font-weight: 300;
+            font-style: normal;
+            font-display: swap;
+        }
+        @font-face {
+            font-family: 'SB Sans Display';
+            src: url('https://cdn.jsdelivr.net/gh/nicolo-ribaudo/free-sber-fonts@main/SBSansDisplay-Semibold.woff2') format('woff2');
+            font-weight: 600;
+            font-style: normal;
+            font-display: swap;
+        }
+        @font-face {
+            font-family: 'SB Sans Display';
+            src: url('https://cdn.jsdelivr.net/gh/nicolo-ribaudo/free-sber-fonts@main/SBSansDisplay-Bold.woff2') format('woff2');
+            font-weight: 700;
+            font-style: normal;
+            font-display: swap;
+        }
+        :root {
+            --bg: #f5f4f0;
+            --bg-card: #eae8e3;
+            --text-primary: #1a1a1a;
+            --text-secondary: #6b6b6b;
+            --text-muted: #9a9a9a;
+            --accent: #1a1a1a;
+            --border: #d9d7d2;
+            --sidebar-width: 340px;
+            --radius: 16px;
+            --radius-sm: 10px;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'SB Sans Display', sans-serif;
+            background: var(--bg);
+            color: var(--text-primary);
+            line-height: 1.5;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        /* ── SCROLLBAR ── */
+        ::-webkit-scrollbar { width: 6px; }
+        ::-webkit-scrollbar-track { background: transparent; }
+        ::-webkit-scrollbar-thumb { background: var(--border); border-radius: 3px; }
+
+        /* ── LEFT SIDEBAR (FIXED) ── */
+        .sidebar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: var(--sidebar-width);
+            height: 100vh;
+            padding: 32px 28px;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            z-index: 100;
+            background: var(--bg);
+        }
+
+        .sidebar-top {
+            display: flex;
+            flex-direction: column;
+            gap: 28px;
+        }
+
+        .avatar {
+            width: 80px;
+            height: 80px;
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+            border-radius: 4px;
+        }
+
+        .avatar svg {
+            width: 40px;
+            height: 40px;
+            color: var(--text-muted);
+        }
+
+        .sidebar-name {
+            font-family: 'SB Sans Display', sans-serif;
+            font-size: 22px;
+            font-weight: 600;
+            letter-spacing: -0.01em;
+            line-height: 1.2;
+        }
+
+        .sidebar-role {
+            font-size: 13px;
+            color: var(--text-secondary);
+            margin-top: 4px;
+        }
+
+        .sidebar-nav {
+            display: flex;
+            flex-direction: column;
+            gap: 4px;
+            margin-top: 8px;
+        }
+
+        .sidebar-nav a {
+            text-decoration: none;
+            color: var(--text-secondary);
+            font-size: 14px;
+            padding: 6px 0;
+            transition: color 0.2s;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .sidebar-nav a:hover {
+            color: var(--text-primary);
+        }
+
+        .sidebar-nav a .year {
+            font-size: 12px;
+            color: var(--text-muted);
+        }
+
+        .sidebar-bottom {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+
+        .sidebar-bottom a {
+            text-decoration: none;
+            color: var(--text-secondary);
+            font-size: 13px;
+            transition: color 0.2s;
+        }
+
+        .sidebar-bottom a:hover {
+            color: var(--text-primary);
+        }
+
+        /* ── MAIN CONTENT ── */
+        .main {
+            margin-left: var(--sidebar-width);
+            padding: 32px 40px 80px 40px;
+            max-width: 1100px;
+        }
+
+        /* ── HERO ── */
+        .hero {
+            padding: 40px 0 60px;
+        }
+
+        .hero-marquee {
+            overflow: hidden;
+            white-space: nowrap;
+            margin-bottom: 32px;
+        }
+
+        .hero-marquee-inner {
+            display: inline-flex;
+            animation: marquee 20s linear infinite;
+        }
+
+        .hero-marquee-inner span {
+            font-family: 'SB Sans Display', sans-serif;
+            font-size: clamp(36px, 5vw, 56px);
+            font-weight: 600;
+            letter-spacing: -0.02em;
+            padding-right: 40px;
+            color: var(--text-primary);
+        }
+
+        .hero-marquee-inner span.dot {
+            color: var(--text-muted);
+            padding-right: 40px;
+        }
+
+        @keyframes marquee {
+            0% { transform: translateX(0); }
+            100% { transform: translateX(-50%); }
+        }
+
+        .hero-images {
+            display: flex;
+            gap: 12px;
+            margin-bottom: 40px;
+        }
+
+        .hero-img {
+            background: var(--bg-card);
+            border-radius: var(--radius);
+            border: 1px solid var(--border);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--text-muted);
+            font-size: 13px;
+            overflow: hidden;
+            position: relative;
+        }
+
+        .hero-img.square {
+            width: 160px;
+            height: 160px;
+            flex-shrink: 0;
+        }
+
+        .hero-img.wide {
+            flex: 1;
+            height: 160px;
+        }
+
+        .hero-img.tall {
+            width: 200px;
+            height: 200px;
+            flex-shrink: 0;
+        }
+
+        .hero-subtitle {
+            font-size: 15px;
+            color: var(--text-secondary);
+            font-style: italic;
+            margin-top: 16px;
+        }
+
+        /* ── PROJECT LINKS (like reference) ── */
+        .project-links {
+            display: flex;
+            flex-direction: column;
+            gap: 2px;
+            margin: 20px 0 48px;
+        }
+
+        .project-link {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 14px 0;
+            border-bottom: 1px solid var(--border);
+            text-decoration: none;
+            color: var(--text-primary);
+            transition: padding-left 0.3s, background 0.3s;
+            cursor: pointer;
+        }
+
+        .project-link:first-child {
+            border-top: 1px solid var(--border);
+        }
+
+        .project-link:hover {
+            padding-left: 8px;
+        }
+
+        .project-link-name {
+            font-size: 18px;
+            font-weight: 500;
+            letter-spacing: -0.01em;
+        }
+
+        .project-link-year {
+            font-size: 13px;
+            color: var(--text-muted);
+        }
+
+        /* ── ABOUT TEXT ── */
+        .about-text {
+            max-width: 640px;
+            margin: 0 0 64px;
+        }
+
+        .about-text p {
+            font-size: 18px;
+            line-height: 1.65;
+            color: var(--text-secondary);
+            margin-bottom: 12px;
+        }
+
+        .about-text p strong {
+            color: var(--text-primary);
+            font-weight: 500;
+        }
+
+        .contacts-row {
+            display: flex;
+            gap: 16px;
+            margin-top: 20px;
+        }
+
+        .contacts-row a {
+            text-decoration: none;
+            font-size: 14px;
+            color: var(--text-primary);
+            background: var(--bg-card);
+            padding: 8px 18px;
+            border-radius: 100px;
+            border: 1px solid var(--border);
+            transition: background 0.2s, transform 0.2s;
+        }
+
+        .contacts-row a:hover {
+            background: var(--text-primary);
+            color: var(--bg);
+            transform: translateY(-1px);
+        }
+
+        /* ── PROJECT SECTION ── */
+        .project-section {
+            margin-bottom: 80px;
+            animation: fadeUp 0.6s ease both;
+        }
+
+        .project-section:nth-child(2) { animation-delay: 0.1s; }
+        .project-section:nth-child(3) { animation-delay: 0.15s; }
+        .project-section:nth-child(4) { animation-delay: 0.2s; }
+
+        @keyframes fadeUp {
+            from { opacity: 0; transform: translateY(24px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .project-header {
+            display: flex;
+            align-items: baseline;
+            gap: 16px;
+            margin-bottom: 8px;
+        }
+
+        .project-header .role {
+            font-size: 12px;
+            text-transform: uppercase;
+            letter-spacing: 0.08em;
+            color: var(--text-muted);
+        }
+
+        .project-header .company {
+            font-family: 'SB Sans Display', sans-serif;
+            font-size: 28px;
+            font-weight: 600;
+            letter-spacing: -0.02em;
+        }
+
+        .project-header .period {
+            font-size: 12px;
+            color: var(--text-muted);
+            margin-left: auto;
+        }
+
+        .project-title {
+            font-family: 'SB Sans Display', sans-serif;
+            font-size: 24px;
+            font-weight: 600;
+            margin: 16px 0 8px;
+            letter-spacing: -0.01em;
+        }
+
+        .project-desc {
+            font-size: 15px;
+            color: var(--text-secondary);
+            line-height: 1.6;
+            max-width: 600px;
+            margin-bottom: 24px;
+        }
+
+        .project-note {
+            font-size: 13px;
+            color: var(--text-muted);
+            font-style: italic;
+            margin-bottom: 20px;
+        }
+
+        /* ── IMAGE GRIDS ── */
+        .img-grid {
+            display: grid;
+            gap: 12px;
+            margin-bottom: 24px;
+        }
+
+        .img-grid.full {
+            grid-template-columns: 1fr;
+        }
+
+        .img-grid.two-col {
+            grid-template-columns: 1fr 1fr;
+        }
+
+        .img-grid.mixed {
+            grid-template-columns: 2fr 1fr;
+        }
+
+        .img-grid.mixed-reverse {
+            grid-template-columns: 1fr 2fr;
+        }
+
+        .img-placeholder {
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: var(--radius);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--text-muted);
+            font-size: 12px;
+            position: relative;
+            overflow: hidden;
+            transition: transform 0.35s ease, box-shadow 0.35s ease;
+        }
+
+        .img-placeholder:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 12px 32px rgba(0,0,0,0.06);
+        }
+
+        .img-placeholder.h-sm { height: 200px; }
+        .img-placeholder.h-md { height: 300px; }
+        .img-placeholder.h-lg { height: 400px; }
+        .img-placeholder.h-xl { height: 500px; }
+
+        .img-placeholder::after {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(135deg, transparent 40%, rgba(255,255,255,0.3) 50%, transparent 60%);
+            opacity: 0;
+            transition: opacity 0.3s;
+        }
+
+        .img-placeholder:hover::after {
+            opacity: 1;
+        }
+
+        .img-placeholder .label {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 8px;
+            color: var(--text-muted);
+        }
+
+        .img-placeholder .label svg {
+            width: 28px;
+            height: 28px;
+            opacity: 0.4;
+        }
+
+        /* ── DIVIDER ── */
+        .section-divider {
+            width: 100%;
+            height: 1px;
+            background: var(--border);
+            margin: 48px 0;
+        }
+
+        /* ── FOOTER ── */
+        .footer {
+            margin-top: 80px;
+            padding-top: 32px;
+            border-top: 1px solid var(--border);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .footer-left {
+            font-size: 13px;
+            color: var(--text-muted);
+        }
+
+        .footer-right {
+            display: flex;
+            gap: 20px;
+        }
+
+        .footer-right a {
+            font-size: 13px;
+            color: var(--text-secondary);
+            text-decoration: none;
+            transition: color 0.2s;
+        }
+
+        .footer-right a:hover {
+            color: var(--text-primary);
+        }
+
+        /* ── RESPONSIVE ── */
+        @media (max-width: 900px) {
+            .sidebar {
+                position: relative;
+                width: 100%;
+                height: auto;
+                padding: 24px 20px;
+                flex-direction: row;
+                align-items: center;
+                gap: 20px;
+                border-bottom: 1px solid var(--border);
+            }
+
+            .sidebar-top {
+                flex-direction: row;
+                align-items: center;
+                gap: 16px;
+            }
+
+            .sidebar-nav { display: none; }
+
+            .sidebar-bottom {
+                margin-left: auto;
+                flex-direction: row;
+            }
+
+            .main {
+                margin-left: 0;
+                padding: 24px 20px 60px;
+            }
+
+            .hero-images {
+                flex-wrap: wrap;
+            }
+
+            .hero-img.square {
+                width: 100px;
+                height: 100px;
+            }
+
+            .hero-img.wide {
+                height: 120px;
+            }
+
+            .img-grid.two-col,
+            .img-grid.mixed,
+            .img-grid.mixed-reverse {
+                grid-template-columns: 1fr;
+            }
+
+            .avatar {
+                width: 48px;
+                height: 48px;
+            }
+
+            .avatar svg {
+                width: 24px;
+                height: 24px;
+            }
+
+            .sidebar-name {
+                font-size: 17px;
+            }
+
+            .sidebar-role {
+                display: none;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- ────── SIDEBAR ────── -->
+    <aside class="sidebar">
+        <div class="sidebar-top">
+            <div class="avatar">
+                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M15.75 6a3.75 3.75 0 11-7.5 0 3.75 3.75 0 017.5 0zM4.501 20.118a7.5 7.5 0 0114.998 0A17.933 17.933 0 0112 21.75c-2.676 0-5.216-.584-7.499-1.632z" />
+                </svg>
+            </div>
+            <div>
+                <div class="sidebar-name">Tasya Dyachkova</div>
+                <div class="sidebar-role">Design-lead</div>
+            </div>
+
+            <nav class="sidebar-nav">
+                <a href="#project-alpha">Project Alpha <span class="year">2024–now</span></a>
+                <a href="#project-beta">Project Beta <span class="year">2023–now</span></a>
+                <a href="#project-gamma">Project Gamma <span class="year">2023</span></a>
+                <a href="#project-delta">Project Delta <span class="year">2023–2024</span></a>
+                <a href="#project-epsilon">Project Epsilon <span class="year">2022–2023</span></a>
+            </nav>
+        </div>
+
+        <div class="sidebar-bottom">
+            <a href="#">contact</a>
+            <a href="#">linkedin</a>
+        </div>
+    </aside>
+
+    <!-- ────── MAIN ────── -->
+    <main class="main">
+
+        <!-- HERO -->
+        <section class="hero">
+            <div class="hero-marquee">
+                <div class="hero-marquee-inner">
+                    <span>Hi! I'm Tasya Dyachkova</span>
+                    <span class="dot">·</span>
+                    <span>Hi! I'm Tasya Dyachkova</span>
+                    <span class="dot">·</span>
+                    <span>Hi! I'm Tasya Dyachkova</span>
+                    <span class="dot">·</span>
+                    <span>Hi! I'm Tasya Dyachkova</span>
+                    <span class="dot">·</span>
+                </div>
+            </div>
+
+            <div class="hero-images">
+                <div class="hero-img square">
+                    <div class="label">
+                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="m2.25 15.75 5.159-5.159a2.25 2.25 0 013.182 0l5.159 5.159m-1.5-1.5 1.409-1.409a2.25 2.25 0 013.182 0l2.909 2.909M3.75 21h16.5A2.25 2.25 0 0022.5 18.75V5.25A2.25 2.25 0 0020.25 3H3.75A2.25 2.25 0 001.5 5.25v13.5A2.25 2.25 0 003.75 21z" /></svg>
+                        <span style="font-size:11px">Photo</span>
+                    </div>
+                </div>
+                <div class="hero-img wide">
+                    <div class="label">
+                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="m2.25 15.75 5.159-5.159a2.25 2.25 0 013.182 0l5.159 5.159m-1.5-1.5 1.409-1.409a2.25 2.25 0 013.182 0l2.909 2.909M3.75 21h16.5A2.25 2.25 0 0022.5 18.75V5.25A2.25 2.25 0 0020.25 3H3.75A2.25 2.25 0 001.5 5.25v13.5A2.25 2.25 0 003.75 21z" /></svg>
+                        <span style="font-size:11px">Featured work</span>
+                    </div>
+                </div>
+                <div class="hero-img square">
+                    <div class="label">
+                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="m2.25 15.75 5.159-5.159a2.25 2.25 0 013.182 0l5.159 5.159m-1.5-1.5 1.409-1.409a2.25 2.25 0 013.182 0l2.909 2.909M3.75 21h16.5A2.25 2.25 0 0022.5 18.75V5.25A2.25 2.25 0 0020.25 3H3.75A2.25 2.25 0 001.5 5.25v13.5A2.25 2.25 0 003.75 21z" /></svg>
+                        <span style="font-size:11px">Photo</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="hero-subtitle">but you can know me for my designs:</div>
+
+            <div class="project-links">
+                <a href="#project-alpha" class="project-link">
+                    <span class="project-link-name">Project Alpha</span>
+                    <span class="project-link-year">2024–now</span>
+                </a>
+                <a href="#project-beta" class="project-link">
+                    <span class="project-link-name">Project Beta</span>
+                    <span class="project-link-year">2023–now</span>
+                </a>
+                <a href="#project-gamma" class="project-link">
+                    <span class="project-link-name">Project Gamma</span>
+                    <span class="project-link-year">2023</span>
+                </a>
+                <a href="#project-delta" class="project-link">
+                    <span class="project-link-name">Project Delta</span>
+                    <span class="project-link-year">2023–2024</span>
+                </a>
+                <a href="#project-epsilon" class="project-link">
+                    <span class="project-link-name">Project Epsilon</span>
+                    <span class="project-link-year">NDA · 2022–2023</span>
+                </a>
+                <a href="#" class="project-link" style="color: var(--text-muted);">
+                    <span class="project-link-name">...</span>
+                    <span class="project-link-year"></span>
+                </a>
+            </div>
+        </section>
+
+        <!-- ABOUT -->
+        <section class="about-text">
+            <p><strong>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</strong> Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris.</p>
+            <p>Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+
+            <div class="contacts-row">
+                <a href="#">Telegram 👋🏻</a>
+                <a href="#">LinkedIn</a>
+            </div>
+        </section>
+
+        <div class="section-divider"></div>
+
+        <!-- ── PROJECT 1 ── -->
+        <section class="project-section" id="project-alpha">
+            <div class="project-header">
+                <span class="role">team-lead</span>
+                <span class="company">Project Alpha</span>
+                <span class="period">2024 — now</span>
+            </div>
+
+            <h2 class="project-title">Design & Visions</h2>
+            <p class="project-desc">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation.</p>
+            <p class="project-note">Lorem ipsum dolor sit amet, consectetur adipiscing elit sed do eiusmod.</p>
+
+            <div class="img-grid full">
+                <div class="img-placeholder h-md">
+                    <div class="label">
+                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="m2.25 15.75 5.159-5.159a2.25 2.25 0 013.182 0l5.159 5.159m-1.5-1.5 1.409-1.409a2.25 2.25 0 013.182 0l2.909 2.909M3.75 21h16.5A2.25 2.25 0 0022.5 18.75V5.25A2.25 2.25 0 0020.25 3H3.75A2.25 2.25 0 001.5 5.25v13.5A2.25 2.25 0 003.75 21z" /></svg>
+                        <span style="font-size:11px">Project screenshot</span>
+                    </div>
+                </div>
+            </div>
+
+            <p class="project-desc">Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident.</p>
+
+            <div class="img-grid full">
+                <div class="img-placeholder h-lg">
+                    <div class="label">
+                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="m2.25 15.75 5.159-5.159a2.25 2.25 0 013.182 0l5.159 5.159m-1.5-1.5 1.409-1.409a2.25 2.25 0 013.182 0l2.909 2.909M3.75 21h16.5A2.25 2.25 0 0022.5 18.75V5.25A2.25 2.25 0 0020.25 3H3.75A2.25 2.25 0 001.5 5.25v13.5A2.25 2.25 0 003.75 21z" /></svg>
+                        <span style="font-size:11px">Full-width showcase</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="img-grid two-col">
+                <div class="img-placeholder h-md">
+                    <div class="label">
+                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="m2.25 15.75 5.159-5.159a2.25 2.25 0 013.182 0l5.159 5.159m-1.5-1.5 1.409-1.409a2.25 2.25 0 013.182 0l2.909 2.909M3.75 21h16.5A2.25 2.25 0 0022.5 18.75V5.25A2.25 2.25 0 0020.25 3H3.75A2.25 2.25 0 001.5 5.25v13.5A2.25 2.25 0 003.75 21z" /></svg>
+                        <span style="font-size:11px">Detail view</span>
+                    </div>
+                </div>
+                <div class="img-placeholder h-md">
+                    <div class="label">
+                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="m2.25 15.75 5.159-5.159a2.25 2.25 0 013.182 0l5.159 5.159m-1.5-1.5 1.409-1.409a2.25 2.25 0 013.182 0l2.909 2.909M3.75 21h16.5A2.25 2.25 0 0022.5 18.75V5.25A2.25 2.25 0 0020.25 3H3.75A2.25 2.25 0 001.5 5.25v13.5A2.25 2.25 0 003.75 21z" /></svg>
+                        <span style="font-size:11px">Detail view</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="img-grid full">
+                <div class="img-placeholder h-md">
+                    <div class="label">
+                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="m2.25 15.75 5.159-5.159a2.25 2.25 0 013.182 0l5.159 5.159m-1.5-1.5 1.409-1.409a2.25 2.25 0 013.182 0l2.909 2.909M3.75 21h16.5A2.25 2.25 0 0022.5 18.75V5.25A2.25 2.25 0 0020.25 3H3.75A2.25 2.25 0 001.5 5.25v13.5A2.25 2.25 0 003.75 21z" /></svg>
+                        <span style="font-size:11px">UI components</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="img-grid mixed">
+                <div class="img-placeholder h-md">
+                    <div class="label">
+                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="m2.25 15.75 5.159-5.159a2.25 2.25 0 013.182 0l5.159 5.159m-1.5-1.5 1.409-1.409a2.25 2.25 0 013.182 0l2.909 2.909M3.75 21h16.5A2.25 2.25 0 0022.5 18.75V5.25A2.25 2.25 0 0020.25 3H3.75A2.25 2.25 0 001.5 5.25v13.5A2.25 2.25 0 003.75 21z" /></svg>
+                        <span style="font-size:11px">Wide image</span>
+                    </div>
+                </div>
+                <div class="img-placeholder h-md">
+                    <div class="label">
+                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="m2.25 15.75 5.159-5.159a2.25 2.25 0 013.182 0l5.159 5.159m-1.5-1.5 1.409-1.409a2.25 2.25 0 013.182 0l2.909 2.909M3.75 21h16.5A2.25 2.25 0 0022.5 18.75V5.25A2.25 2.25 0 0020.25 3H3.75A2.25 2.25 0 001.5 5.25v13.5A2.25 2.25 0 003.75 21z" /></svg>
+                        <span style="font-size:11px">Narrow</span>
+                    </div>
+                </div>
+            </div>
+
+            <p class="project-desc">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+
+            <div class="img-grid full">
+                <div class="img-placeholder h-md">
+                    <div class="label">
+                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="m2.25 15.75 5.159-5.159a2.25 2.25 0 013.182 0l5.159 5.159m-1.5-1.5 1.409-1.409a2.25 2.25 0 013.182 0l2.909 2.909M3.75 21h16.5A2.25 2.25 0 0022.5 18.75V5.25A2.25 2.25 0 0020.25 3H3.75A2.25 2.25 0 001.5 5.25v13.5A2.25 2.25 0 003.75 21z" /></svg>
+                        <span style="font-size:11px">Design system</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <div class="section-divider"></div>
+
+        <!-- ── PROJECT 2 ── -->
+        <section class="project-section" id="project-beta">
+            <div class="project-header">
+                <span class="role">art-director</span>
+                <span class="company">Project Beta</span>
+                <span class="period">2023 — now</span>
+            </div>
+
+            <h2 class="project-title">Design Crew 🤘🏻</h2>
+            <p class="project-desc">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla facilisi. Praesent commodo cursus magna, vel scelerisque nisl consectetur et.</p>
+
+            <p class="project-desc">Cras mattis consectetur purus sit amet fermentum. Nullam quis risus eget urna mollis ornare vel eu leo.</p>
+
+            <div class="img-grid full">
+                <div class="img-placeholder h-lg">
+                    <div class="label">
+                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="m2.25 15.75 5.159-5.159a2.25 2.25 0 013.182 0l5.159 5.159m-1.5-1.5 1.409-1.409a2.25 2.25 0 013.182 0l2.909 2.909M3.75 21h16.5A2.25 2.25 0 0022.5 18.75V5.25A2.25 2.25 0 0020.25 3H3.75A2.25 2.25 0 001.5 5.25v13.5A2.25 2.25 0 003.75 21z" /></svg>
+                        <span style="font-size:11px">Brand book</span>
+                    </div>
+                </div>
+            </div>
+
+            <p class="project-desc">Maecenas faucibus mollis interdum. Donec id elit non mi porta gravida at eget metus.</p>
+
+            <div class="img-grid full">
+                <div class="img-placeholder h-md">
+                    <div class="label">
+                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="m2.25 15.75 5.159-5.159a2.25 2.25 0 013.182 0l5.159 5.159m-1.5-1.5 1.409-1.409a2.25 2.25 0 013.182 0l2.909 2.909M3.75 21h16.5A2.25 2.25 0 0022.5 18.75V5.25A2.25 2.25 0 0020.25 3H3.75A2.25 2.25 0 001.5 5.25v13.5A2.25 2.25 0 003.75 21z" /></svg>
+                        <span style="font-size:11px">Event materials</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="img-grid full">
+                <div class="img-placeholder h-lg">
+                    <div class="label">
+                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="m2.25 15.75 5.159-5.159a2.25 2.25 0 013.182 0l5.159 5.159m-1.5-1.5 1.409-1.409a2.25 2.25 0 013.182 0l2.909 2.909M3.75 21h16.5A2.25 2.25 0 0022.5 18.75V5.25A2.25 2.25 0 0020.25 3H3.75A2.25 2.25 0 001.5 5.25v13.5A2.25 2.25 0 003.75 21z" /></svg>
+                        <span style="font-size:11px">Visual system</span>
+                    </div>
+                </div>
+            </div>
+
+            <p class="project-desc">Vestibulum id ligula porta felis euismod semper. Aenean lacinia bibendum nulla sed consectetur.</p>
+        </section>
+
+        <div class="section-divider"></div>
+
+        <!-- ── PROJECT 3 ── -->
+        <section class="project-section" id="project-gamma">
+            <div class="project-header">
+                <span class="role">lead designer</span>
+                <span class="company">Project Gamma</span>
+                <span class="period">2023</span>
+            </div>
+
+            <h2 class="project-title">AI Interface</h2>
+            <p class="project-desc">Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus. Donec sed odio dui.</p>
+
+            <div class="img-grid full">
+                <div class="img-placeholder h-lg">
+                    <div class="label">
+                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="m2.25 15.75 5.159-5.159a2.25 2.25 0 013.182 0l5.159 5.159m-1.5-1.5 1.409-1.409a2.25 2.25 0 013.182 0l2.909 2.909M3.75 21h16.5A2.25 2.25 0 0022.5 18.75V5.25A2.25 2.25 0 0020.25 3H3.75A2.25 2.25 0 001.5 5.25v13.5A2.25 2.25 0 003.75 21z" /></svg>
+                        <span style="font-size:11px">AI dashboard</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="img-grid two-col">
+                <div class="img-placeholder h-md">
+                    <div class="label">
+                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="m2.25 15.75 5.159-5.159a2.25 2.25 0 013.182 0l5.159 5.159m-1.5-1.5 1.409-1.409a2.25 2.25 0 013.182 0l2.909 2.909M3.75 21h16.5A2.25 2.25 0 0022.5 18.75V5.25A2.25 2.25 0 0020.25 3H3.75A2.25 2.25 0 001.5 5.25v13.5A2.25 2.25 0 003.75 21z" /></svg>
+                        <span style="font-size:11px">Mobile view</span>
+                    </div>
+                </div>
+                <div class="img-placeholder h-md">
+                    <div class="label">
+                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="m2.25 15.75 5.159-5.159a2.25 2.25 0 013.182 0l5.159 5.159m-1.5-1.5 1.409-1.409a2.25 2.25 0 013.182 0l2.909 2.909M3.75 21h16.5A2.25 2.25 0 0022.5 18.75V5.25A2.25 2.25 0 0020.25 3H3.75A2.25 2.25 0 001.5 5.25v13.5A2.25 2.25 0 003.75 21z" /></svg>
+                        <span style="font-size:11px">Desktop view</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <div class="section-divider"></div>
+
+        <!-- ── PROJECT 4 ── -->
+        <section class="project-section" id="project-delta">
+            <div class="project-header">
+                <span class="role">designer</span>
+                <span class="company">Project Delta</span>
+                <span class="period">2023 — 2024</span>
+            </div>
+
+            <h2 class="project-title">Digital Platform</h2>
+            <p class="project-desc">Vivamus sagittis lacus vel augue laoreet rutrum faucibus dolor auctor. Etiam porta sem malesuada magna mollis euismod.</p>
+
+            <div class="img-grid full">
+                <div class="img-placeholder h-md">
+                    <div class="label">
+                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="m2.25 15.75 5.159-5.159a2.25 2.25 0 013.182 0l5.159 5.159m-1.5-1.5 1.409-1.409a2.25 2.25 0 013.182 0l2.909 2.909M3.75 21h16.5A2.25 2.25 0 0022.5 18.75V5.25A2.25 2.25 0 0020.25 3H3.75A2.25 2.25 0 001.5 5.25v13.5A2.25 2.25 0 003.75 21z" /></svg>
+                        <span style="font-size:11px">Platform overview</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="img-grid mixed-reverse">
+                <div class="img-placeholder h-md">
+                    <div class="label">
+                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="m2.25 15.75 5.159-5.159a2.25 2.25 0 013.182 0l5.159 5.159m-1.5-1.5 1.409-1.409a2.25 2.25 0 013.182 0l2.909 2.909M3.75 21h16.5A2.25 2.25 0 0022.5 18.75V5.25A2.25 2.25 0 0020.25 3H3.75A2.25 2.25 0 001.5 5.25v13.5A2.25 2.25 0 003.75 21z" /></svg>
+                        <span style="font-size:11px">Detail</span>
+                    </div>
+                </div>
+                <div class="img-placeholder h-md">
+                    <div class="label">
+                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="m2.25 15.75 5.159-5.159a2.25 2.25 0 013.182 0l5.159 5.159m-1.5-1.5 1.409-1.409a2.25 2.25 0 013.182 0l2.909 2.909M3.75 21h16.5A2.25 2.25 0 0022.5 18.75V5.25A2.25 2.25 0 0020.25 3H3.75A2.25 2.25 0 001.5 5.25v13.5A2.25 2.25 0 003.75 21z" /></svg>
+                        <span style="font-size:11px">Wide image</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <div class="section-divider"></div>
+
+        <!-- ── PROJECT 5 ── -->
+        <section class="project-section" id="project-epsilon">
+            <div class="project-header">
+                <span class="role">designer</span>
+                <span class="company">Project Epsilon</span>
+                <span class="period">NDA · 2022 — 2023</span>
+            </div>
+
+            <h2 class="project-title">Confidential Project</h2>
+            <p class="project-desc">Nullam id dolor id nibh ultricies vehicula ut id elit. Cras justo odio, dapibus ut facilisis in, egestas eget quam. Integer posuere erat a ante venenatis.</p>
+
+            <div class="img-grid full">
+                <div class="img-placeholder h-md" style="background: repeating-linear-gradient(45deg, var(--bg-card), var(--bg-card) 10px, #e3e1dc 10px, #e3e1dc 20px);">
+                    <div class="label">
+                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" style="width:28px;height:28px;opacity:0.4"><path stroke-linecap="round" stroke-linejoin="round" d="M16.5 10.5V6.75a4.5 4.5 0 10-9 0v3.75m-.75 11.25h10.5a2.25 2.25 0 002.25-2.25v-6.75a2.25 2.25 0 00-2.25-2.25H6.75a2.25 2.25 0 00-2.25 2.25v6.75a2.25 2.25 0 002.25 2.25z" /></svg>
+                        <span style="font-size:11px">Under NDA</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- FOOTER -->
+        <footer class="footer">
+            <div class="footer-left">© 2025 Tasya Dyachkova</div>
+            <div class="footer-right">
+                <a href="#">Telegram</a>
+                <a href="#">LinkedIn</a>
+                <a href="#">Email</a>
+            </div>
+        </footer>
+    </main>
+
+    <script>
+        // ── Intersection Observer for scroll animations ──
+        const sections = document.querySelectorAll('.project-section');
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.animationPlayState = 'running';
+                }
+            });
+        }, { threshold: 0.1 });
+
+        sections.forEach(s => {
+            s.style.animationPlayState = 'paused';
+            observer.observe(s);
+        });
+
+        // ── Smooth scroll for nav links ──
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                const href = this.getAttribute('href');
+                if (href === '#') return;
+                e.preventDefault();
+                const target = document.querySelector(href);
+                if (target) {
+                    target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                }
+            });
+        });
+
+        // ── Active nav highlight on scroll ──
+        const navLinks = document.querySelectorAll('.sidebar-nav a');
+        const sectionIds = Array.from(navLinks).map(a => a.getAttribute('href').slice(1));
+
+        window.addEventListener('scroll', () => {
+            let current = '';
+            sectionIds.forEach(id => {
+                const el = document.getElementById(id);
+                if (el && el.getBoundingClientRect().top <= 200) {
+                    current = id;
+                }
+            });
+            navLinks.forEach(a => {
+                const href = a.getAttribute('href').slice(1);
+                if (href === current) {
+                    a.style.color = 'var(--text-primary)';
+                    a.style.fontWeight = '500';
+                } else {
+                    a.style.color = '';
+                    a.style.fontWeight = '';
+                }
+            });
+        });
+    </script>
+</body>
+</html>
