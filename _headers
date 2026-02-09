@@ -1,0 +1,29 @@
+# Security Headers for Netlify/GitHub Pages
+
+/*
+  # Prevent clickjacking attacks
+  X-Frame-Options: DENY
+
+  # Prevent MIME type sniffing
+  X-Content-Type-Options: nosniff
+
+  # Enable XSS protection in browsers
+  X-XSS-Protection: 1; mode=block
+
+  # Control referrer information
+  Referrer-Policy: strict-origin-when-cross-origin
+
+  # Prevent loading resources over HTTP
+  Content-Security-Policy: upgrade-insecure-requests; default-src 'self'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline' https://cdn.jsdelivr.net; font-src 'self' https://cdn.jsdelivr.net; img-src 'self' data: https:; connect-src 'self'; frame-ancestors 'none'; base-uri 'self'; form-action 'self';
+
+  # HSTS - Force HTTPS (enable only if you have SSL)
+  Strict-Transport-Security: max-age=31536000; includeSubDomains; preload
+
+  # Permissions Policy - Disable unnecessary browser features
+  Permissions-Policy: geolocation=(), microphone=(), camera=(), payment=(), usb=(), magnetometer=(), gyroscope=(), accelerometer=()
+
+  # Cache control for security
+  Cache-Control: public, max-age=3600, must-revalidate
+
+  # Prevent DNS rebinding attacks
+  X-Permitted-Cross-Domain-Policies: none

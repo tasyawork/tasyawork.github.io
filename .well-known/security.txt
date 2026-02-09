@@ -1,0 +1,22 @@
+# Security Policy
+# This file follows the RFC 9116 standard
+# https://securitytxt.org/
+
+Contact: mailto:security@yourdomain.com
+Expires: 2027-02-09T00:00:00.000Z
+Preferred-Languages: ru, en
+Canonical: https://yourdomain.com/.well-known/security.txt
+
+# Security Policy
+Policy: https://yourdomain.com/SECURITY.md
+
+# If you discover a security vulnerability, please report it responsibly.
+# We appreciate your efforts to improve our security.
+
+# Please include:
+# - Description of the vulnerability
+# - Steps to reproduce
+# - Impact assessment
+# - Your contact information (optional)
+
+# Thank you for helping keep this site secure!
