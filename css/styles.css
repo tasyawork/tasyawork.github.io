@@ -97,13 +97,35 @@ img {
     width: 100%;
     height: 100%;
     object-fit: cover;
+    object-position: center;
+    display: block;
+    transition: transform 0.3s ease;
+}
+
+/* Enhanced image effects - Framer-inspired */
+.dark-card img:hover {
+    transform: scale(1.02);
 }
 
 .placeholder-label img {
     width: 100%;
     height: 100%;
     object-fit: cover;
+    object-position: center;
+    display: block;
 }
+
+/* Image container aspect ratios */
+.aspect-square { aspect-ratio: 1; }
+.aspect-portrait { aspect-ratio: 0.75; }
+.aspect-landscape { aspect-ratio: 1.5; }
+.aspect-wide { aspect-ratio: 16/9; }
+
+/* Rounded card variants - apply to card containers, not images */
+.card-round-sm { border-radius: 12px !important; }
+.card-round-md { border-radius: 16px !important; }
+.card-round-lg { border-radius: 24px !important; }
+.card-round-xl { border-radius: 32px !important; }
 
 /* Protect all content from selection and download */
 * {
@@ -135,21 +157,6 @@ body::before {
     background: transparent;
 }
 
-/* Watermark overlay for images (optional) */
-.dark-card::after,
-.light-card::after,
-.feature-card::after {
-    content: '© Таисья Дьячкова';
-    position: absolute;
-    bottom: 10px;
-    right: 10px;
-    color: rgba(255, 255, 255, 0.3);
-    font-size: 10px;
-    font-weight: 600;
-    pointer-events: none;
-    z-index: 10;
-    text-shadow: 0 0 3px rgba(0, 0, 0, 0.5);
-}
 
 /* Prevent print media from showing images */
 @media print {
@@ -371,27 +378,24 @@ body::before {
 
 /* ── Dark image cards ── */
 .dark-card {
-    border-radius: var(--radius);
+    border-radius: 24px;
     overflow: hidden;
     position: relative;
     display: flex;
-    align-items: stretch;
-    justify-content: stretch;
+    align-items: center;
+    justify-content: center;
     font-size: 13px;
     margin-bottom: 16px;
     transition: transform 0.3s ease, box-shadow 0.3s ease;
     width: 100%;
+    height: auto;
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.08);
 }
 
 .dark-card:hover {
-    transform: translateY(-2px);
-    box-shadow: 0 16px 48px rgba(0,0,0,0.12);
+    transform: translateY(-4px);
+    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.15);
 }
-
-.dark-card.h-sm { min-height: 220px; }
-.dark-card.h-md { min-height: 320px; }
-.dark-card.h-lg { min-height: 420px; }
-.dark-card.h-xl { min-height: 500px; }
 
 .dark-card .placeholder-label {
     display: flex;
@@ -401,13 +405,15 @@ body::before {
     gap: 8px;
     width: 100%;
     height: 100%;
+    padding: 0;
+    margin: 0;
 }
 
 /* Light image cards */
 .light-card {
     background: var(--bg-light);
     border: 1px solid var(--border);
-    border-radius: var(--radius);
+    border-radius: 24px;
     overflow: hidden;
     display: flex;
     align-items: center;
@@ -415,16 +421,16 @@ body::before {
     color: var(--text-muted);
     font-size: 13px;
     margin-bottom: 16px;
-    transition: transform 0.3s ease;
+    transition: transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease;
     width: 100%;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
 }
 
 .light-card:hover {
-    transform: translateY(-2px);
+    transform: translateY(-4px);
+    box-shadow: 0 12px 40px rgba(0, 0, 0, 0.08);
+    border-color: rgba(0, 0, 0, 0.12);
 }
-
-.light-card.h-sm { min-height: 220px; }
-.light-card.h-md { min-height: 320px; }
 
 /* ── Image grids ── */
 .grid {
@@ -493,18 +499,21 @@ body::before {
 
 .feature-card {
     background: var(--card-dark);
-    border-radius: 100px;
+    border-radius: 32px;
     color: #fff;
     min-height: 280px;
     display: flex;
     flex-direction: column;
     justify-content: stretch;
     align-content: stretch;
-    transition: transform 0.3s ease;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.12);
+    overflow: hidden;
 }
 
 .feature-card:hover {
-    transform: translateY(-2px);
+    transform: translateY(-4px);
+    box-shadow: 0 16px 48px rgba(0, 0, 0, 0.2);
 }
 
 .feature-card h4 {
@@ -523,7 +532,7 @@ body::before {
 .feature-card .card-img-area {
     flex: 1;
     background: var(--card-dark-2);
-    border-radius: var(--radius-sm);
+    border-radius: 16px;
     margin-top: 16px;
     min-height: 120px;
     display: flex;
@@ -531,6 +540,7 @@ body::before {
     justify-content: center;
     color: rgba(255,255,255,0.2);
     font-size: 12px;
+    overflow: hidden;
 }
 
 /* ── KPI row (CSI / MAU / СМИ style) ── */
@@ -543,7 +553,7 @@ body::before {
 
 .kpi-card {
     background: var(--card-dark);
-    border-radius: var(--radius);
+    border-radius: 24px;
     padding: 24px;
     text-align: center;
     color: #fff;
@@ -553,11 +563,13 @@ body::before {
     align-items: center;
     justify-content: center;
     gap: 8px;
-    transition: transform 0.3s;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.1);
 }
 
 .kpi-card:hover {
-    transform: translateY(-2px);
+    transform: translateY(-4px);
+    box-shadow: 0 16px 48px rgba(0, 0, 0, 0.18);
 }
 
 .kpi-card .kpi-icon {
@@ -656,6 +668,8 @@ body::before {
 /* ═══════════════════════════════════
    RESPONSIVE
    ═══════════════════════════════════ */
+
+/* Tablet and smaller */
 @media (max-width: 960px) {
     .sidebar {
         position: relative;
@@ -684,29 +698,48 @@ body::before {
     .grid.cols-1-2 {
         grid-template-columns: 1fr;
     }
-
-    .dark-card.h-lg { height: 320px; }
-    .dark-card.h-xl { height: 380px; }
-    .dark-card.h-md { height: 260px; }
-    .dark-card.h-sm { height: 180px; }
-    .light-card.h-md { height: 260px; }
-    .light-card.h-sm { height: 180px; }
-    .feature-card { min-height: 220px; }
 }
 
+/* Mobile and iPhone - Modern responsive approach */
 @media (max-width: 600px) {
     .sidebar { padding: 20px 16px; }
     .main { padding: 24px 16px 48px; }
-    .case-title { font-size: 26px; }
-    .section-heading { font-size: 19px; }
-    .metric-number { font-size: 36px; }
+    .case-title { font-size: 32px; }
+    .case-subtitle { font-size: 18px; }
+    .section-heading { font-size: 20px; }
+    .metric-number { font-size: 40px; }
     .grid.cols-3 { grid-template-columns: 1fr; }
 
-    .dark-card.h-lg { height: 220px; }
-    .dark-card.h-xl { height: 260px; }
-    .dark-card.h-md { height: 180px; }
-    .dark-card.h-sm { height: 140px; }
-    .light-card.h-md { height: 180px; }
-    .light-card.h-sm { height: 140px; }
-    .feature-card { min-height: 160px; }
+    /* Mobile image optimization - Framer-inspired approach */
+    .dark-card img,
+    .light-card img,
+    .feature-card img,
+    .placeholder-label img {
+        object-fit: cover;
+        object-position: center;
+        width: 100%;
+        height: 100%;
+    }
+
+    /* Remove extra padding from feature cards on mobile */
+    .feature-card {
+        padding: 0;
+    }
+
+    /* Adjust card spacing on mobile */
+    .dark-card,
+    .light-card {
+        margin-bottom: 12px;
+    }
+
+    /* Make placeholder labels more mobile-friendly */
+    .placeholder-label {
+        padding: 0;
+    }
+}
+
+/* Extra small devices (iPhone SE, small phones) */
+@media (max-width: 375px) {
+    .case-title { font-size: 28px; }
+    .case-subtitle { font-size: 16px; }
 }
