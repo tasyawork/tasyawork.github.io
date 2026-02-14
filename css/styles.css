@@ -77,8 +77,10 @@ body {
    ═══════════════════════════════════ */
 img {
     max-width: 100%;
-    height: auto;
+    width: 100%;
+    height: 100%;
     display: block;
+    object-fit: cover;
     /* Prevent image dragging and downloading */
     -webkit-user-drag: none;
     -khtml-user-drag: none;
@@ -120,6 +122,12 @@ img {
 .aspect-portrait { aspect-ratio: 0.75; }
 .aspect-landscape { aspect-ratio: 1.5; }
 .aspect-wide { aspect-ratio: 16/9; }
+
+/* Card height variants for desktop */
+.h-sm { min-height: 200px; }
+.h-md { min-height: 400px; }
+.h-lg { min-height: 500px; }
+.h-xl { min-height: 600px; }
 
 /* Rounded card variants - apply to card containers, not images */
 .card-round-sm { border-radius: 12px !important; }
@@ -473,6 +481,16 @@ body::before {
     align-items: baseline;
     gap: 16px;
     margin: 24px 0 16px;
+    width: 100%;
+}
+
+.metric-row img {
+    width: 100%;
+    height: auto;
+    object-fit: contain;
+    object-position: center;
+    max-width: 100%;
+    display: block;
 }
 
 .metric-number {
@@ -549,6 +567,16 @@ body::before {
     grid-template-columns: repeat(3, 1fr);
     gap: 12px;
     margin: 28px 0;
+    width: 100%;
+}
+
+.kpi-row img {
+    width: 100%;
+    height: auto;
+    object-fit: contain;
+    object-position: center;
+    max-width: 100%;
+    display: block;
 }
 
 .kpi-card {
@@ -693,6 +721,11 @@ body::before {
         grid-template-columns: 1fr;
     }
 
+    .metric-row,
+    .kpi-row {
+        margin: 20px 0;
+    }
+
     .grid.cols-2,
     .grid.cols-2-1,
     .grid.cols-1-2 {
@@ -735,6 +768,43 @@ body::before {
     /* Make placeholder labels more mobile-friendly */
     .placeholder-label {
         padding: 0;
+    }
+
+    /* Optimize metric and KPI images for mobile */
+    .metric-row img,
+    .kpi-row img {
+        width: 100%;
+        height: auto;
+        object-fit: contain;
+        max-width: 100%;
+    }
+
+    /* Ensure metric row stacks properly on mobile */
+    .metric-row {
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+    }
+
+    /* Adjust card heights for mobile - use auto to adapt to content */
+    .h-sm,
+    .h-md,
+    .h-lg,
+    .h-xl {
+        min-height: auto;
+        height: auto;
+    }
+
+    /* Ensure images in cards maintain aspect ratio on mobile */
+    .dark-card,
+    .light-card {
+        aspect-ratio: auto;
+        min-height: 200px;
+    }
+
+    /* Feature cards responsive height */
+    .feature-card {
+        min-height: 240px;
     }
 }
 
