@@ -98,8 +98,6 @@ img {
 .feature-card img {
     width: 100%;
     height: 100%;
-    object-fit: cover;
-    object-position: center;
     display: block;
     transition: transform 0.3s ease;
 }
@@ -122,12 +120,6 @@ img {
 .aspect-portrait { aspect-ratio: 0.75; }
 .aspect-landscape { aspect-ratio: 1.5; }
 .aspect-wide { aspect-ratio: 16/9; }
-
-/* Card height variants for desktop */
-.h-sm { min-height: 200px; }
-.h-md { min-height: 400px; }
-.h-lg { min-height: 500px; }
-.h-xl { min-height: 600px; }
 
 /* Rounded card variants - apply to card containers, not images */
 .card-round-sm { border-radius: 12px !important; }
@@ -230,27 +222,7 @@ body::before {
 }
 
 .sidebar-links {
-    display: flex;
-    flex-direction: column;
-    gap: 6px;
-    margin-top: 28px;
-}
-
-.sidebar-links a {
-    font-size: 24px;
-    color: var(--text);
-    text-decoration: none;
-    transition: color 0.2s;
-    display: flex;
-    align-items: center;
-    gap: 6px;
-}
-
-.sidebar-links a:hover { color: var(--text); }
-
-.sidebar-links a svg {
-    width: 14px; height: 14px;
-    opacity: 0.5;
+    margin-top: auto;
 }
 
 .sidebar-intro {
@@ -390,8 +362,7 @@ body::before {
     overflow: hidden;
     position: relative;
     display: flex;
-    align-items: center;
-    justify-content: center;
+    object-fit: fill;
     font-size: 13px;
     margin-bottom: 16px;
     transition: transform 0.3s ease, box-shadow 0.3s ease;
@@ -406,10 +377,7 @@ body::before {
 }
 
 .dark-card .placeholder-label {
-    display: flex;
     flex-direction: column;
-    align-items: center;
-    justify-content: center;
     gap: 8px;
     width: 100%;
     height: 100%;
@@ -424,8 +392,7 @@ body::before {
     border-radius: 24px;
     overflow: hidden;
     display: flex;
-    align-items: center;
-    justify-content: center;
+    object-fit: fill;
     color: var(--text-muted);
     font-size: 13px;
     margin-bottom: 16px;
@@ -482,6 +449,12 @@ body::before {
     gap: 16px;
     margin: 24px 0 16px;
     width: 100%;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.metric-row:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.15);
 }
 
 .metric-row img {
@@ -522,8 +495,7 @@ body::before {
     min-height: 280px;
     display: flex;
     flex-direction: column;
-    justify-content: stretch;
-    align-content: stretch;
+    object-fit: fill;
     transition: transform 0.3s ease, box-shadow 0.3s ease;
     box-shadow: 0 4px 20px rgba(0, 0, 0, 0.12);
     overflow: hidden;
@@ -563,67 +535,37 @@ body::before {
 
 /* ── KPI row (CSI / MAU / СМИ style) ── */
 .kpi-row {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 12px;
     margin: 28px 0;
     width: 100%;
+    background: transparent;
+    border-radius: 24px;
+    overflow: hidden;
+    position: relative;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 
-.kpi-row img {
-    width: 100%;
-    height: auto;
-    object-fit: contain;
-    object-position: center;
-    max-width: 100%;
-    display: block;
+.kpi-row:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.15);
 }
 
 .kpi-card {
-    background: var(--card-dark);
-    border-radius: 24px;
-    padding: 24px;
-    text-align: center;
-    color: #fff;
     min-height: 140px;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    gap: 8px;
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
-    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.1);
+    object-fit: fill;
+    overflow: hidden;
+    width: 100%;
+    height: 100%;
 }
 
-.kpi-card:hover {
-    transform: translateY(-4px);
-    box-shadow: 0 16px 48px rgba(0, 0, 0, 0.18);
+.kpi-card img {
+    width: 100%;
+    height: 100%;
+    display: block;
+    transition: transform 0.3s ease;
 }
 
-.kpi-card .kpi-icon {
-    width: 48px; height: 48px;
-    background: var(--card-dark-2);
-    border-radius: var(--radius-xs);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    margin-bottom: 4px;
-}
-
-.kpi-card .kpi-icon svg {
-    width: 22px; height: 22px;
-    color: rgba(255,255,255,0.5);
-}
-
-.kpi-card .kpi-name {
-    font-size: 18px;
-    font-weight: 600;
-}
-
-.kpi-card .kpi-desc {
-    font-size: 12px;
-    color: rgba(255,255,255,0.5);
-    line-height: 1.4;
+.kpi-card img:hover {
+    transform: scale(1.02);
 }
 
 /* Bullet list */
@@ -679,6 +621,67 @@ body::before {
 
 .footer-right a:hover { color: var(--text); }
 
+/* ====== layout ====== */
+.social {
+  display: flex;
+  gap: 10px; /* расстояние между кнопками */
+  align-items: center;
+  justify-content: center;
+  padding: 10px;
+}
+
+/* ====== button-link ====== */
+.social__btn {
+  width: 140px;
+  height: 60px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+
+  border-radius: 20px;
+  background: #0f1211;
+  color: #fff;
+  text-decoration: none;
+
+  font-weight: 500;
+  font-size: 24px;
+  letter-spacing: -0.02em;
+  line-height: 1;
+
+  box-shadow:
+    0 10px 22px rgba(0,0,0,.28),
+    inset 0 1px 0 rgba(255,255,255,.06),
+    inset 0 -2px 0 rgba(0,0,0,.35);
+
+  transition: transform .15s ease, box-shadow .15s ease, filter .15s ease;
+  -webkit-tap-highlight-color: transparent;
+  outline: none;
+}
+
+.social__btn:hover {
+  transform: translateY(-2px);
+  box-shadow:
+    0 14px 28px rgba(0,0,0,.32),
+    inset 0 1px 0 rgba(255,255,255,.08),
+    inset 0 -2px 0 rgba(0,0,0,.38);
+  filter: brightness(1.02);
+}
+
+.social__btn:active {
+  transform: translateY(0);
+  box-shadow:
+    0 8px 18px rgba(0,0,0,.26),
+    inset 0 2px 0 rgba(0,0,0,.45);
+}
+
+.social__btn:focus-visible {
+  box-shadow:
+    0 0 0 4px rgba(255,255,255,.25),
+    0 12px 26px rgba(0,0,0,.30),
+    inset 0 1px 0 rgba(255,255,255,.06),
+    inset 0 -2px 0 rgba(0,0,0,.35);
+}
+
 /* ═══════════════════════════════════
    ANIMATIONS
    ═══════════════════════════════════ */
@@ -696,6 +699,19 @@ body::before {
 /* ═══════════════════════════════════
    RESPONSIVE
    ═══════════════════════════════════ */
+
+@media (max-width: 680px) {
+  .social { 
+    gap: 10px; 
+    padding-top: 15px;
+}
+  .social__btn {
+    width: 100px;
+    height: 50px;
+    font-size: 24px;
+    border-radius: 20px;
+  }
+}
 
 /* Tablet and smaller */
 @media (max-width: 960px) {
@@ -748,8 +764,7 @@ body::before {
     .light-card img,
     .feature-card img,
     .placeholder-label img {
-        object-fit: cover;
-        object-position: center;
+        object-fit: fill;
         width: 100%;
         height: 100%;
     }
@@ -786,25 +801,15 @@ body::before {
         text-align: center;
     }
 
-    /* Adjust card heights for mobile - use auto to adapt to content */
-    .h-sm,
-    .h-md,
-    .h-lg,
-    .h-xl {
-        min-height: auto;
-        height: auto;
-    }
-
     /* Ensure images in cards maintain aspect ratio on mobile */
     .dark-card,
     .light-card {
         aspect-ratio: auto;
-        min-height: 200px;
     }
 
-    /* Feature cards responsive height */
-    .feature-card {
-        min-height: 240px;
+    /* Allow tags to wrap on mobile */
+    .tag {
+        white-space: normal;
     }
 }
 
