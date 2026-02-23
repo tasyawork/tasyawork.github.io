@@ -47,7 +47,7 @@
     <aside class="sidebar">
         <!-- Avatar -->
         <div class="sidebar-avatar">
-            <img src="images/avatar.png" alt="Аватар" style="width:100%;height:100%;object-fit:cover;">
+            <img src="assets/images/avatar.png" alt="Аватар" style="width:100%;height:100%;object-fit:cover;">
         </div>
 
         <!-- Name -->
@@ -81,7 +81,7 @@
         <!-- Social links -->
         <div class="sidebar-links">
             <nav class="social" aria-label="Социальные сети">
-                <a class="social__btn" href="https://t.me/your_username" target="_blank" rel="noopener noreferrer" aria-label="Telegram">
+                <a class="social__btn" href="https://t.me/tasihella" target="_blank" rel="noopener noreferrer" aria-label="Telegram">
                     tg
                 </a>
                 <a class="social__btn" href="https://www.linkedin.com/in/your_profile" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn">
@@ -120,7 +120,7 @@
             <!-- Hero dark card -->
             <div class="dark-card h-lg">
                 <div class="placeholder-label">
-                    <img src="images/image1.png" alt="Мам, колонка опять не работает!", >
+                    <img src="assets/images/image1.png" alt="Мам, колонка опять не работает!", >
                 </div>
             </div>
 
@@ -133,12 +133,12 @@
             <div class="grid cols-2">
                 <div class="light-card h-md">
                     <div class="placeholder-label">
-                        <img src="images/creative1.png" alt="Инструкция по ручной диагностике">
+                        <img src="assets/images/solution.png" alt="Решение">
                     </div>
                 </div>
                 <div class="dark-card h-md">
                     <div class="placeholder-label">
-                        <img src="images/creative2.png" alt="Решение">
+                        <img src="assets/images/creative2.png" alt="Инструкция по ручной диагностике"">
                     </div>
                 </div>
             </div>
@@ -146,27 +146,27 @@
             <!-- Solution screens -->
             <div class="dark-card h-xl">
                 <div class="placeholder-label">
-                    <img src="images/screencast_scheme.png" alt="Схема работы решения">
+                    <img src="assets/images/screencast_scheme.png" alt="Схема работы решения">
                 </div>
             </div>
 
             <!-- What we did -->
-            <div class="grid cols-2">
+            <div class="grid cols-2-2">
                 <div class="dark-card h-md">
                     <div class="placeholder-label">
-                        <img src="images/creative3.png" alt="Схема работы решения">
+                        <img src="assets/images/creative3.png" alt="Схема работы решения">
                     </div>
                 </div>
                 <div class="dark-card h-md">
                     <div class="placeholder-label">
-                        <img src="images/creative4.png" alt="Что сделали?">
+                        <img src="assets/images/what_we_did.png" alt="Что сделали?">
                     </div>
                 </div>
             </div>
 
             <!-- Metric -->
             <div class="metric-row">
-                <img src="images/score.png", alt="Оценка бизнес-ценности решения">
+                <img src="assets/images/score.png", alt="Оценка бизнес-ценности решения">
             </div>
 
             <p class="section-text">Концепция подтверждена стейкхолдером как рабочая и&nbsp;перспективная. Команда SberDevices уже начала работу над внедрением агентизации, а&nbsp;из нашего решения они берут несколько конкретных фич для внедрения.</p>
@@ -176,10 +176,10 @@
 
             <div class="feature-cards">
                 <div class="feature-card">
-                    <img src="images/creative5.png" alt="Проактивность Умного дома">
+                    <img src="assets/images/creative5.png" alt="Проактивность Умного дома">
                 </div>
                 <div class="feature-card">
-                    <img src="images/creative6.png" alt="Реактивный режим">
+                    <img src="assets/images/creative6.png" alt="Реактивный режим">
                 </div>
             </div>
 
@@ -188,16 +188,32 @@
 
             <ul class="bullet-list">
                 <li>прикрутили реальный GigaChat и купили для него токены</li>
-                <li>сэмитировали про и реактивные режимы работы агента</li>
+                <li>симулировали проактивные и реактивные режимы работы агента</li>
                 <li>загрузили реальные инструкции с сайта GigaHelp в&nbsp;векторную базу данных</li>
             </ul>
+
+            <section class="video-block">
+                <div class="video-wrapper">
+                    <video class="video" controls playsinline preload="metadata">
+                        <source src="assets/video/reactive_instruction.mp4" type="video/mp4">
+                        Ваш браузер не поддерживает видео.
+                    </video>
+                    <div class="video-watermark">tasyadyac</div>
+                </div>
+            </section>
 
             <!-- KPI -->
             <h3 class="section-heading">Как планируем замерять успех проекта?</h3>
 
             <div class="kpi-row">
                 <div class="kpi-card">
-                    <img src="images/metrics.png" alt="KPI проекта">
+                    <img src="assets/images/csi.png" alt="CSI">
+                </div>
+                <div class="kpi-card">
+                    <img src="assets/images/mau.png" alt="MAU">
+                </div>
+                <div class="kpi-card">
+                    <img src="assets/images/smi.png" alt="СМИ">
                 </div>
             </div>
 
@@ -210,24 +226,25 @@
              ────────────────────────────── -->
         <section class="case-study fade-in" id="sbol">
             <h1 class="case-title">SBOL</h1>
-            <p class="case-subtitle">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore.</p>
+            <p class="case-subtitle">Развитие и поддержка рекламных форматов в банаковском приложении</p>
 
             <div class="tags">
-                <span class="tag">UX Research</span>
-                <span class="tag">Product Design</span>
-                <span class="tag">Prototyping</span>
-                <span class="tag dark">UI</span>
+                <span class="tag">Менджмент</span>
+                <span class="tag">UI</span>
+                <span class="tag">Исследования с UX командой</span>
+                <span class="tag">A/B тестирования</span>
+                <span class="tag">Data-Driven Design</span>
             </div>
 
             <div class="dark-card h-lg">
                 <div class="placeholder-label">
-                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="m2.25 15.75 5.159-5.159a2.25 2.25 0 013.182 0l5.159 5.159m-1.5-1.5 1.409-1.409a2.25 2.25 0 013.182 0l2.909 2.909M3.75 21h16.5A2.25 2.25 0 0022.5 18.75V5.25A2.25 2.25 0 0020.25 3H3.75A2.25 2.25 0 001.5 5.25v13.5A2.25 2.25 0 003.75 21z" /></svg>
-                    <span>Проект SBOL</span>
+                    <img src="assets/images/cover_sbol.png" alt="Обложка SBOL">
                 </div>
             </div>
 
-            <h3 class="section-heading">Lorem ipsum dolor sit amet</h3>
-            <p class="section-text">Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident.</p>
+            <h3 class="section-heading">Кейс 1: AI-оптимизация процессов</h3>
+            <p class="section-text">Лидировала внедрение нового инструмента, увеличила объём еженедельного обновления контента более, чем в 2 раза (с 40 до 90 единиц).</p>
+            <p class="section-text">Вместе с командой маркетинга адаптировала модель генерации изображений для рекламы СБОЛа.</p>
 
             <div class="grid cols-2">
                 <div class="dark-card h-md">
@@ -252,21 +269,23 @@
              ────────────────────────────── -->
         <section class="case-study fade-in" id="yandex">
             <h1 class="case-title">Yandex.Direct</h1>
-            <p class="case-subtitle">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla facilisi praesent commodo.</p>
+            <p class="case-subtitle">Мобильное приложение для управления рекламными кампаниями</p>
 
             <div class="tags">
-                <span class="tag">Аналитика</span>
-                <span class="tag">Дизайн интерфейсов</span>
-                <span class="tag dark">UI</span>
+                <span class="tag">Глубинные интервью</span>
+                <span class="tag">UI</span>
+                <span class="tag">Usability-тестирования</span>
+                <!-- <span class="tag">Добавить!</span>
+                <span class="tag">Добавить!</span> -->
             </div>
 
             <div class="dark-card h-lg">
                 <div class="placeholder-label">
-                    <img src="images/ydirect.png" alt="Coming soon">
+                    <img src="assets/images/ydirect.png" alt="Coming soon">
                 </div>
             </div>
 
-            <h3 class="section-heading">Lorem ipsum dolor</h3>
+            <!-- <h3 class="section-heading">Lorem ipsum dolor</h3>
             <p class="section-text">Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus.</p>
 
             <div class="dark-card h-md">
@@ -274,19 +293,13 @@
                     <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="m2.25 15.75 5.159-5.159a2.25 2.25 0 013.182 0l5.159 5.159m-1.5-1.5 1.409-1.409a2.25 2.25 0 013.182 0l2.909 2.909M3.75 21h16.5A2.25 2.25 0 0022.5 18.75V5.25A2.25 2.25 0 0020.25 3H3.75A2.25 2.25 0 001.5 5.25v13.5A2.25 2.25 0 003.75 21z" /></svg>
                     <span>Дашборд</span>
                 </div>
-            </div>
+            </div> -->
         </section>
 
         <!-- Footer -->
         <footer class="footer">
             <div class="footer-left">© 2026 Таисья Дьячкова</div>
-            <div class="footer-right">
-                <a href="#">LinkedIn</a>
-                <a href="#">Telegram</a>
-                <a href="#">CV</a>
-            </div>
         </footer>
-
     </main>
 
     <!-- Scripts -->

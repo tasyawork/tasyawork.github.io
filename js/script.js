@@ -246,27 +246,6 @@
             return false;
         }
     });
-
-    // 18. Watermark protection - add invisible copyright info
-    const addWatermark = () => {
-        const watermark = document.createElement('div');
-        watermark.style.cssText = `
-            position: fixed;
-            bottom: 0;
-            right: 0;
-            padding: 5px 10px;
-            font-size: 9px;
-            color: rgba(0,0,0,0.1);
-            pointer-events: none;
-            z-index: 9999;
-            user-select: none;
-        `;
-        watermark.textContent = '© 2025 Таисья Дьячкова';
-        watermark.setAttribute('aria-hidden', 'true');
-        document.body.appendChild(watermark);
-    };
-    addWatermark();
-
 })();
 
 // ═══════════════════════════════════
@@ -290,12 +269,18 @@ const sectionIds = Array.from(navLinks).map(a => a.getAttribute('href').slice(1)
 
 function updateActiveNav() {
     let current = '';
-    sectionIds.forEach(id => {
-        const el = document.getElementById(id);
-        if (el && el.getBoundingClientRect().top <= 160) {
-            current = id;
-        }
-    });
+    const scrolledToBottom = window.scrollY + window.innerHeight >= document.documentElement.scrollHeight - 50;
+
+    if (scrolledToBottom) {
+        current = sectionIds[sectionIds.length - 1];
+    } else {
+        sectionIds.forEach(id => {
+            const el = document.getElementById(id);
+            if (el && el.getBoundingClientRect().top <= 160) {
+                current = id;
+            }
+        });
+    }
     navLinks.forEach(a => {
         const href = a.getAttribute('href').slice(1);
         if (href === current) {
