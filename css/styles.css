@@ -44,6 +44,7 @@
     --text: #1a1a1a;
     --text-secondary: #151515;
     --text-muted: #9e9e9e;
+    --font-size-main: 24px;
     --border: #e8e8e8;
     --accent: #1a1a1a;
     --card-dark: #1c1c1e;
@@ -358,7 +359,7 @@ body::before {
 .tag {
     font-size: 16px;
     font-weight: 600;
-    color: var(--text-);
+    color: var(--text);
     background: var(--bg-light);
     padding: 6px 14px;
     border-radius: 100px;
@@ -375,10 +376,9 @@ body::before {
     object-fit: fill;
     font-size: 13px;
     margin-bottom: 16px;
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    transition: transform 0.3s ease;
     width: 100%;
     height: auto;
-    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.08);
 }
 
 .dark-card:hover {
@@ -405,9 +405,8 @@ body::before {
     color: var(--text-muted);
     font-size: 13px;
     margin-bottom: 16px;
-    transition: transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease;
+    transition: transform 0.3s ease, border-color 0.3s ease;
     width: 100%;
-    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
 }
 
 .light-card:hover {
@@ -428,17 +427,18 @@ body::before {
 .grid.cols-3 { grid-template-columns: 1fr 1fr 1fr; }
 .grid.cols-2-1 { grid-template-columns: 2fr 1fr; }
 .grid.cols-1-2 { grid-template-columns: 1fr 2fr; }
+.grid.cols-1-1 { grid-template-columns: 1fr 1fr;}
 
 /* ── Section headings inside case study ── */
 .section-heading {
-    font-size: 22px;
+    font-size: 32px;
     font-weight: 600;
     letter-spacing: -0.01em;
     margin: 36px 0 12px;
 }
 
 .section-text {
-    font-size: 20px;
+    font-size: var(--font-size-main);
     font-weight: normal;
     color: var(--text-secondary);
     line-height: 1.65;
@@ -459,12 +459,11 @@ body::before {
     gap: 16px;
     margin: 24px 0 16px;
     width: 100%;
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    transition: transform 0.3s ease;
 }
 
 .metric-row:hover {
     transform: translateY(-4px);
-    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.15);
 }
 
 .metric-row img {
@@ -506,14 +505,12 @@ body::before {
     display: flex;
     flex-direction: column;
     object-fit: fill;
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
-    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.12);
+    transition: transform 0.3s ease;
     overflow: hidden;
 }
 
 .feature-card:hover {
     transform: translateY(-4px);
-    box-shadow: 0 16px 48px rgba(0, 0, 0, 0.2);
 }
 
 .feature-card h4 {
@@ -558,7 +555,7 @@ body::before {
     width: 100%;
     height: 100%;
     border-radius: 26px;
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    transition: transform 0.3s ease;
 }
 
 .kpi-card:hover {
@@ -580,7 +577,7 @@ body::before {
 }
 
 .bullet-list li {
-    font-size: 16px;
+    font-size: var(--font-size-main);
     color: var(--text-secondary);
     line-height: 1.65;
     padding-left: 16px;
@@ -653,7 +650,7 @@ body::before {
   letter-spacing: -0.02em;
   line-height: 1;
 
-  transition: transform .15s ease, box-shadow .15s ease, filter .15s ease;
+  transition: transform .15s ease, filter .15s ease;
   -webkit-tap-highlight-color: transparent;
   outline: none;
 }
@@ -665,17 +662,6 @@ body::before {
 
 .social__btn:active {
   transform: translateY(0);
-  box-shadow:
-    0 8px 18px rgba(0,0,0,.26),
-    inset 0 2px 0 rgba(0,0,0,.45);
-}
-
-.social__btn:focus-visible {
-  box-shadow:
-    0 0 0 4px rgba(255,255,255,.25),
-    0 12px 26px rgba(0,0,0,.30),
-    inset 0 1px 0 rgba(255,255,255,.06),
-    inset 0 -2px 0 rgba(0,0,0,.35);
 }
 
 .video-block{
@@ -789,6 +775,7 @@ body::before {
     .grid.cols-2,
     .grid.cols-2-1,
     .grid.cols-2-2,
+    .grid.cols-1-1,
     .grid.cols-1-2 {
         grid-template-columns: 1fr;
     }
@@ -799,10 +786,12 @@ body::before {
     .sidebar { padding: 20px 16px; }
     .main { padding: 24px 16px 48px; }
     .intro-text { font-size: 28px; }
-    .case-title { font-size: 32px; }
-    .case-subtitle { font-size: 18px; }
-    .section-heading { font-size: 20px; }
+    .case-title { font-size: 36px; }
+    .case-subtitle { font-size: 16px; }
+    .section-text { font-size: 20px; line-height: 1.4;}
+    .section-heading { font-size: 30px; line-height: 1.2;}
     .metric-number { font-size: 40px; }
+    .bullet-list li { font-size: 20px; line-height: 1.4;}
     .grid.cols-3 { grid-template-columns: 1fr; }
 
     /* Mobile image optimization - Framer-inspired approach */
