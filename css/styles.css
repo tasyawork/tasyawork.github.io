@@ -704,7 +704,7 @@ body::before {
 }
 
 .intro-text {
-    font-size: 35px;
+    font-size: 48px;
     font-weight: normal;
     color: var(--text-secondary);
     line-height: 1.1;
