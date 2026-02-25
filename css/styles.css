@@ -383,7 +383,6 @@ body::before {
 
 .dark-card:hover {
     transform: translateY(-4px);
-    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.15);
 }
 
 .dark-card .placeholder-label {
@@ -413,8 +412,6 @@ body::before {
 
 .light-card:hover {
     transform: translateY(-4px);
-    box-shadow: 0 12px 40px rgba(0, 0, 0, 0.08);
-    border-color: rgba(0, 0, 0, 0.12);
 }
 
 /* ── Image grids ── */
