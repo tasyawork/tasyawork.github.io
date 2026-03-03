@@ -260,7 +260,7 @@ const obs = new IntersectionObserver((entries) => {
             e.target.classList.add('visible');
         }
     });
-}, { threshold: 0.08 });
+}, { threshold: 0, rootMargin: '0px 0px -40px 0px' });
 fadeEls.forEach(el => obs.observe(el));
 
 // ── Active sidebar project highlight on scroll ──
